@@ -1,0 +1,26 @@
+{
+  "name": "flare-plus-d1",
+  "version": "1.0.0",
+  "description": "Cloudflare D1 SQL database testing project",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "vitest",
+    "db:migrate": "wrangler d1 migrations apply",
+    "db:local": "wrangler d1 migrations apply --local"
+  },
+  "keywords": ["cloudflare", "d1", "sql", "database", "edge-sql"],
+  "author": "Flare Plus",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.25"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "flare-plus-kv",
+  "version": "1.0.0",
+  "description": "Cloudflare KV key-value store testing project",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "vitest",
+    "kv:preview": "wrangler kv:key list --preview",
+    "kv:production": "wrangler kv:key list"
+  },
+  "keywords": ["cloudflare", "kv", "key-value", "edge-storage"],
+  "author": "Flare Plus",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.25"
+  }
+}

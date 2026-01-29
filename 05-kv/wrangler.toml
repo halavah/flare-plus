@@ -1,0 +1,39 @@
+name = "flare-plus-kv"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# KV Namespace binding
+[[kv_namespaces]]
+binding = "MY_KV_NAMESPACE"
+id = "your-kv-namespace-id"
+preview_id = "your-preview-kv-namespace-id"
+
+# Secondary KV namespace (optional)
+[[kv_namespaces]]
+binding = "CACHE_KV"
+id = "your-cache-kv-namespace-id"
+preview_id = "your-preview-cache-kv-namespace-id"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+KV_TTL_SECONDS = "3600"
+
+[env.production]
+name = "flare-plus-kv-prod"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+KV_TTL_SECONDS = "86400"
+
+[[env.production.kv_namespaces]]
+binding = "MY_KV_NAMESPACE"
+id = "your-production-kv-namespace-id"
+
+[[env.production.kv_namespaces]]
+binding = "CACHE_KV"
+id = "your-production-cache-kv-namespace-id"
+
+# Resource limits
+[limits]
+cpu_ms = 50

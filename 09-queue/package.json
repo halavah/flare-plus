@@ -1,0 +1,32 @@
+{
+  "name": "09-queue",
+  "version": "1.0.0",
+  "description": "Cloudflare Workers Queue 消息处理系统",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "vitest",
+    "db:migrate": "wrangler d1 execute queue-db --file=./migrations/0001_initial_schema.sql",
+    "db:local": "wrangler d1 execute queue-db --local --file=./migrations/0001_initial_schema.sql",
+    "queue:send": "wrangler queues producer send task-queue '{\"type\":\"test\",\"data\":\"hello\"}'",
+    "queue:list": "wrangler queues list"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "queue",
+    "async"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "vitest": "^1.0.4",
+    "wrangler": "^3.22.1"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.23"
+  }
+}

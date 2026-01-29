@@ -1,0 +1,25 @@
+{
+  "name": "flare-plus-email-routing",
+  "version": "1.0.0",
+  "description": "Cloudflare Email Routing worker implementation",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "vitest"
+  },
+  "keywords": ["cloudflare", "email", "routing", "forwarding", "worker"],
+  "author": "Flare Plus",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.25",
+    "@cfworker/json-schema": "^1.12.5"
+  }
+}

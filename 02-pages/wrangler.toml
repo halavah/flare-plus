@@ -1,0 +1,11 @@
+name = "quartz-flare"
+compatibility_date = "2023-12-01"
+
+# Pages 项目配置
+pages_build_output_dir = "public"
+
+[env.production]
+compatibility_flags = ["nodejs_compat"]
+
+[env.production.vars]
+ENVIRONMENT = "production"

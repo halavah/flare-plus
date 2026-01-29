@@ -1,0 +1,28 @@
+name = "flare-plus-d1"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# D1 Database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "flare-plus-database"
+database_id = "your-database-id"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+
+[env.production]
+name = "flare-plus-d1-prod"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "flare-plus-database-prod"
+database_id = "your-production-database-id"
+
+# Resource limits
+[limits]
+cpu_ms = 50

@@ -1,0 +1,40 @@
+{
+  "name": "quartz-flare",
+  "version": "1.0.0",
+  "description": "Quartz Flare - Cloudflare Pages JAMstack Website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public --compatibility-date=2023-05-18 --binding ENVIRONMENT=development",
+    "build": "node src/core/generator.js",
+    "build:dev": "ENVIRONMENT=development node src/core/generator.js",
+    "deploy": "wrangler pages deploy public --project-name=quartz-flare",
+    "deploy:prod": "wrangler pages deploy public --project-name=quartz-flare --branch=production",
+    "serve": "npx serve public",
+    "clean": "rm -rf public .cache",
+    "preview": "npm run build && npm run serve"
+  },
+  "keywords": [
+    "cloudflare",
+    "pages",
+    "jamstack",
+    "static-site-generator",
+    "handlebars",
+    "edge-computing"
+  ],
+  "author": "Flare Plus Team",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.2",
+    "glob": "^10.5.0",
+    "gray-matter": "^4.0.3",
+    "handlebars": "^4.7.8",
+    "marked": "^9.1.6",
+    "postcss": "^8.4.32"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "wrangler": "^4.56.0"
+  }
+}

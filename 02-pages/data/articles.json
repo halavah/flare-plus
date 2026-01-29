@@ -1,0 +1,277 @@
+{
+  "config": {
+    "siteName": "Halavah's Tech",
+    "siteDescription": "探索前沿技术,提升开发效率",
+    "githubUrl": "https://github.com/halavah",
+    "beianNumber": "京ICP备12345678号",
+    "copyrightText": "© 2025 Halavah's Tech. All rights reserved.",
+    "adLink": "https://api.nekoapi.com",
+    "defaultViewMode": "table"
+  },
+  "articles": [
+    {
+      "title": "Claude Code Windows 系统完整安装指南",
+      "description": "Claude Code Windows 系统完整安装指南",
+      "htmlFile": "chapter01/0101.windows-installation.html",
+      "category": "安装指南"
+    },
+    {
+      "title": "Claude Code macOS 系统完整安装指南",
+      "description": "Claude Code macOS 系统完整安装指南",
+      "htmlFile": "chapter01/0102.macos-installation.html",
+      "category": "安装指南"
+    },
+    {
+      "title": "Claude Code Linux/WSL2 系统完整安装指南",
+      "description": "Claude Code Linux/WSL2 系统完整安装指南",
+      "htmlFile": "chapter01/0103.linux-wsl2-installation.html",
+      "category": "安装指南"
+    },
+    {
+      "title": "Claude Code 原生安装完全指南",
+      "description": "Claude Code 原生安装完全指南",
+      "htmlFile": "chapter01/0104.claude-code-native-installation.html",
+      "category": "安装指南"
+    },
+    {
+      "title": "Claude Code 安装与配置完全指南",
+      "description": "Claude Code 安装与配置完全指南",
+      "htmlFile": "chapter01/0105.claude-code-installation-guide.html",
+      "category": "安装指南"
+    },
+    {
+      "title": "Vibe Coding 之 Claude Code 常用命令指南",
+      "description": "Vibe Coding 之 Claude Code 常用命令指南",
+      "htmlFile": "chapter02/0201.claude-code-command-guide.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude Code 高级配置技巧",
+      "description": "Claude Code 高级配置技巧",
+      "htmlFile": "chapter02/0202.claude-code-advanced-config.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude Code 实用操作手册",
+      "description": "Claude Code 实用操作手册",
+      "htmlFile": "chapter02/0203.claude-code-operation-manual.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude Code CLI 完全指南",
+      "description": "Claude Code CLI 完全指南",
+      "htmlFile": "chapter02/0204.claude-code-cli-guide.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude Code 交互模式与快捷键指南",
+      "description": "Claude Code 交互模式与快捷键指南",
+      "htmlFile": "chapter02/0205.claude-code-interaction-guide.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude Code 斜线命令详解",
+      "description": "Claude Code 斜线命令详解",
+      "htmlFile": "chapter02/0206.claude-code-slash-commands.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude Code 全局配置与设置",
+      "description": "Claude Code 全局配置与设置",
+      "htmlFile": "chapter02/0207.claude-code-global-settings.html",
+      "category": "使用技巧"
+    },
+    {
+      "title": "Claude-Mem - Claude Code 持久化记忆系统",
+      "description": "Claude-Mem - Claude Code 持久化记忆系统",
+      "htmlFile": "chapter03/0301.claude-memory.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claudia - Claude Code 强大GUI应用",
+      "description": "Claudia - Claude Code 强大GUI应用",
+      "htmlFile": "chapter03/0302.claudia-macos.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claude Code Now - 世界最快的Claude Code启动器",
+      "description": "Claude Code Now - 世界最快的Claude Code启动器",
+      "htmlFile": "chapter03/0303.claude-code-now.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Open CoreUI - Rust重写的轻量级Open WebUI",
+      "description": "Open CoreUI - Rust重写的轻量级Open WebUI",
+      "htmlFile": "chapter03/0304.open-coreui.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "CC-Switch - Claude Code与Codex配置切换神器",
+      "description": "CC-Switch - Claude Code与Codex配置切换神器",
+      "htmlFile": "chapter03/0305.cc-switch.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Crush - 终端AI编程代理工具",
+      "description": "Crush - 终端AI编程代理工具",
+      "htmlFile": "chapter03/0306.crush.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "CCUndo - Claude Code精细撤销工具",
+      "description": "CCUndo - Claude Code精细撤销工具",
+      "htmlFile": "chapter03/0307.ccundo.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "CCStatusLine - Claude Code 美观状态行工具",
+      "description": "CCStatusLine - Claude Code 美观状态行工具",
+      "htmlFile": "chapter03/0308.ccstatusline.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claude-Triflow - 三流式代码生成框架",
+      "description": "Claude-Triflow - 三流式代码生成框架",
+      "htmlFile": "chapter03/0309.claude-triflow.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Cometix-Tab - VSCode/Cursor Tab增强工具",
+      "description": "Cometix-Tab - VSCode/Cursor Tab增强工具",
+      "htmlFile": "chapter03/0310.Cometix-Tab.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "LanyunCodingUI - Claude Code现代化Web界面",
+      "description": "LanyunCodingUI - Claude Code现代化Web界面",
+      "htmlFile": "chapter03/0311.lanyuncodingUI.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claude Code Router - 智能请求路由工具",
+      "description": "Claude Code Router - 智能请求路由工具",
+      "htmlFile": "chapter03/0312.claude-code-router.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claude Code Viewer - Web可视化客户端",
+      "description": "Claude Code Viewer - Web可视化客户端",
+      "htmlFile": "chapter03/0313.claude-code-viewer.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "CCNexus - 智能API网关",
+      "description": "CCNexus - 智能API网关",
+      "htmlFile": "chapter03/0314.ccNexus.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claude-Mem - Claude Code 持久化记忆系统",
+      "description": "Claude-Mem - Claude Code 持久化记忆系统",
+      "htmlFile": "chapter03/0315.claude-mem.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "BMAD Method - 多智能体协作框架",
+      "description": "BMAD Method - 多智能体协作框架",
+      "htmlFile": "chapter03/0316.BMAD-METHOD.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Graphiti MCP Server - AI知识图谱服务器",
+      "description": "Graphiti MCP Server - AI知识图谱服务器",
+      "htmlFile": "chapter03/0317.graphiti-mcp-server.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Zen MCP Server - 多模型协调指挥系统",
+      "description": "Zen MCP Server - 多模型协调指挥系统",
+      "htmlFile": "chapter03/0318.zen-mcp-server.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Context Engineering Intro - AI编程助手上下文工程模板",
+      "description": "Context Engineering Intro - AI编程助手上下文工程模板",
+      "htmlFile": "chapter03/0319.context-engineering-intro.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "SuperClaude Framework - 增强Claude开发框架",
+      "description": "SuperClaude Framework - 增强Claude开发框架",
+      "htmlFile": "chapter03/0320.SuperClaude_Framework.html",
+      "category": "使用工具"
+    },
+    {
+      "title": "Claude Code Advanced Usage - 高级使用技巧",
+      "description": "Claude Code Advanced Usage - 高级使用技巧",
+      "htmlFile": "chapter04/0401.claude-code-advanced-usage.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "AI Plugin Integration - AI插件集成实战指南",
+      "description": "AI Plugin Integration - AI插件集成实战指南",
+      "htmlFile": "chapter04/0402.ai-plugin-integration.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "Git Workflow Automation - Git工作流自动化实战",
+      "description": "Git Workflow Automation - Git工作流自动化实战",
+      "htmlFile": "chapter04/0403.git-workflow-automation.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "Multi Session Management - 多会话并行管理策略",
+      "description": "Multi Session Management - 多会话并行管理策略",
+      "htmlFile": "chapter04/0404.multi-session-management.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "Project Planning Methodology - AI项目规划方法论",
+      "description": "Project Planning Methodology - AI项目规划方法论",
+      "htmlFile": "chapter04/0405.project-planning-methodology.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "Claude Skills Workflow System - Claude Skills工作流系统",
+      "description": "Claude Skills Workflow System - Claude Skills工作流系统",
+      "htmlFile": "chapter04/0406.skills-workflow-system.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "AI Product Development - AI产品开发最佳实践",
+      "description": "AI Product Development - AI产品开发最佳实践",
+      "htmlFile": "chapter04/0407.ai-product-development.html",
+      "category": "最新动态"
+    },
+    {
+      "title": "Xget - 超高性能开发者资源加速引擎",
+      "description": "Xget - 超高性能开发者资源加速引擎",
+      "htmlFile": "chapter05/0501.xget-high-performance-resource.html",
+      "category": "网络工具"
+    },
+    {
+      "title": "Bytebot - 开源AI桌面代理",
+      "description": "Bytebot - 开源AI桌面代理",
+      "htmlFile": "chapter05/0502.bytebot-ai-desktop-agent.html",
+      "category": "网络工具"
+    },
+    {
+      "title": "Onyx - 企业级开源AI平台",
+      "description": "Onyx - 企业级开源AI平台",
+      "htmlFile": "chapter05/0503.onyx-opensource-ai-platform.html",
+      "category": "网络工具"
+    },
+    {
+      "title": "TrendRadar - 30秒部署的热点助手",
+      "description": "TrendRadar - 30秒部署的热点助手",
+      "htmlFile": "chapter05/0504.trendradar-trend-monitoring-tool.html",
+      "category": "网络工具"
+    },
+    {
+      "title": "Tracy Profiler - C++性能分析利器",
+      "description": "Tracy Profiler - C++性能分析利器",
+      "htmlFile": "chapter05/0505.tracy-profiler-performance-analysis.html",
+      "category": "网络工具"
+    }
+  ]
+}

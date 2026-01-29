@@ -1,0 +1,43 @@
+name = "flare-plus-durable-objects"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# Durable Objects bindings
+[[durable_objects.bindings]]
+name = "CHAT_ROOM"
+class_name = "ChatRoom"
+
+[[durable_objects.bindings]]
+name = "COUNTER"
+class_name = "Counter"
+
+[[durable_objects.bindings]]
+name = "GAME_STATE"
+class_name = "GameState"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+MAX_CONNECTIONS = "100"
+HEARTBEAT_INTERVAL = "30000"
+
+[env.production]
+name = "flare-plus-durable-objects-prod"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+MAX_CONNECTIONS = "1000"
+HEARTBEAT_INTERVAL = "15000"
+
+# Migrations (for Durable Objects)
+[[migrations]]
+tag = "v1"
+new_classes = ["ChatRoom", "Counter"]
+
+[[migrations]]
+tag = "v2"
+new_classes = ["GameState"]
+
+# Resource limits
+[limits]
+cpu_ms = 150

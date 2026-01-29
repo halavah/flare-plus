@@ -1,0 +1,30 @@
+name = "flare-plus-email-routing"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# Email Routing worker configuration
+send_email = [
+  { name = "SENDER" }
+]
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+DOMAIN = "example.com"
+DEFAULT_RECIPIENT = "admin@example.com"
+
+# Email routing rules
+[email_routing]
+enabled = true
+
+[env.production]
+name = "flare-plus-email-routing-prod"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+DOMAIN = "yourdomain.com"
+DEFAULT_RECIPIENT = "admin@yourdomain.com"
+
+# Resource limits
+[limits]
+cpu_ms = 50

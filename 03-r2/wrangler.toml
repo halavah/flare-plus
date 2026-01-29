@@ -1,0 +1,11 @@
+name = "flare-plus-r2"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# R2 存储桶配置
+[[r2_buckets]]
+binding = "MY_BUCKET"
+bucket_name = "flare-plus-test-bucket"
+
+[vars]
+ENVIRONMENT = "development"

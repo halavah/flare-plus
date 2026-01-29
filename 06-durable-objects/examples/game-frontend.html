@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实时游戏 - Durable Objects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .game-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 900px;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2d3748;
+      margin-bottom: 30px;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: #f7fafc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .status-item {
+      text-align: center;
+    }
+
+    .status-label {
+      font-size: 12px;
+      color: #718096;
+      margin-bottom: 5px;
+    }
+
+    .status-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: #2d3748;
+    }
+
+    .game-area {
+      background: #f7fafc;
+      border-radius: 8px;
+      padding: 30px;
+      min-height: 300px;
+      margin-bottom: 20px;
+    }
+
+    .scoreboard {
+      margin-bottom: 20px;
+    }
+
+    .scoreboard h3 {
+      margin-bottom: 15px;
+      color: #2d3748;
+    }
+
+    .player-score {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .player-name {
+      font-weight: 600;
+      color: #667eea;
+    }
+
+    .player-points {
+      font-size: 18px;
+      font-weight: 700;
+      color: #48bb78;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #5a67d8;
+    }
+
+    button:disabled {
+      background: #cbd5e0;
+      cursor: not-allowed;
+    }
+
+    button.secondary {
+      background: #48bb78;
+    }
+
+    button.secondary:hover {
+      background: #38a169;
+    }
+
+    button.danger {
+      background: #f56565;
+    }
+
+    button.danger:hover {
+      background: #e53e3e;
+    }
+
+    .log {
+      background: #2d3748;
+      color: #a0aec0;
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .log-entry {
+      margin-bottom: 5px;
+    }
+
+    .log-entry.success {
+      color: #48bb78;
+    }
+
+    .log-entry.error {
+      color: #f56565;
+    }
+
+    .setup-screen {
+      text-align: center;
+    }
+
+    .setup-screen input {
+      width: 100%;
+      max-width: 300px;
+      padding: 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 14px;
+      margin: 10px auto;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="game-container">
+    <h1>🎮 实时多人游戏</h1>
+
+    <div class="status-bar">
+      <div class="status-item">
+        <div class="status-label">游戏 ID</div>
+        <div class="status-value" id="gameId">-</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">回合</div>
+        <div class="status-value" id="currentRound">0</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">玩家</div>
+        <div class="status-value" id="playerCount">0</div>
+      </div>
+      <div class="status-item">
+        <div class="status-label">状态</div>
+        <div class="status-value" id="gameStatus">未开始</div>
+      </div>
+    </div>
+
+    <!-- 设置界面 -->
+    <div class="game-area" id="setupScreen">
+      <div class="setup-screen">
+        <h2>创建游戏</h2>
+        <input type="text" id="gameIdInput" placeholder="游戏 ID (例: game-123)" value="game-123">
+        <input type="text" id="playerIdInput" placeholder="玩家 ID (例: player1)" value="player1">
+        <button onclick="createGame()" style="margin-top: 20px;">创建并加入游戏</button>
+      </div>
+    </div>
+
+    <!-- 游戏界面 -->
+    <div class="game-area" id="gameScreen" style="display: none;">
+      <div class="scoreboard">
+        <h3>📊 计分板</h3>
+        <div id="scoreboard"></div>
+      </div>
+
+      <div class="actions">
+        <button onclick="startGame()" id="startButton">开始游戏</button>
+        <button onclick="addScore()" class="secondary" id="scoreButton" disabled>获得分数 (+10)</button>
+        <button onclick="resetGame()" class="danger">重置游戏</button>
+        <button onclick="disconnect()" class="danger">断开连接</button>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <h3>📝 游戏日志</h3>
+      <div class="log" id="log"></div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:8787';
+    let ws = null;
+    let gameId = null;
+    let playerId = null;
+    let gameState = null;
+
+    // 创建游戏
+    async function createGame() {
+      const gameIdInput = document.getElementById('gameIdInput').value.trim();
+      const playerIdInput = document.getElementById('playerIdInput').value.trim();
+
+      if (!gameIdInput || !playerIdInput) {
+        addLog('请填写游戏 ID 和玩家 ID', 'error');
+        return;
+      }
+
+      gameId = gameIdInput;
+      playerId = playerIdInput;
+
+      try {
+        // 创建游戏
+        const response = await fetch(`${API_URL}/api/game`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            gameId,
+            players: [playerId]
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          addLog(`游戏创建成功: ${gameId}`, 'success');
+          document.getElementById('gameId').textContent = gameId;
+
+          // 切换到游戏界面
+          document.getElementById('setupScreen').style.display = 'none';
+          document.getElementById('gameScreen').style.display = 'block';
+
+          // 连接 WebSocket
+          connectWebSocket();
+        } else {
+          addLog('创建游戏失败: ' + result.error, 'error');
+        }
+      } catch (error) {
+        addLog('创建游戏失败: ' + error.message, 'error');
+      }
+    }
+
+    // 连接 WebSocket
+    function connectWebSocket() {
+      const wsUrl = API_URL.replace('http://', 'ws://') + `/game/${gameId}/ws`;
+
+      addLog('正在连接到游戏服务器...');
+      ws = new WebSocket(wsUrl);
+
+      ws.onopen = () => {
+        addLog('已连接到游戏服务器', 'success');
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          handleGameUpdate(data);
+        } catch (error) {
+          console.error('Failed to parse message:', error);
+        }
+      };
+
+      ws.onerror = (error) => {
+        addLog('WebSocket 错误', 'error');
+        console.error('WebSocket error:', error);
+      };
+
+      ws.onclose = () => {
+        addLog('已断开连接', 'error');
+      };
+    }
+
+    // 处理游戏更新
+    function handleGameUpdate(data) {
+      console.log('Game update:', data);
+
+      switch (data.type) {
+        case 'connected':
+          addLog('连接成功，会话 ID: ' + data.sessionId.substring(0, 8) + '...', 'success');
+          updateGameState(data.gameState);
+          break;
+
+        case 'game_started':
+          addLog('游戏开始！', 'success');
+          updateGameState(data.gameState);
+          document.getElementById('startButton').disabled = true;
+          document.getElementById('scoreButton').disabled = false;
+          document.getElementById('gameStatus').textContent = '进行中';
+          break;
+
+        case 'score_update':
+          addLog(`${data.playerId} 获得分数`, 'success');
+          updateScoreboard(data.scores);
+          break;
+
+        case 'game_reset':
+          addLog('游戏已重置', 'success');
+          gameState = null;
+          updateGameState({
+            started: false,
+            players: [],
+            scores: {},
+            currentRound: 0
+          });
+          document.getElementById('startButton').disabled = false;
+          document.getElementById('scoreButton').disabled = true;
+          document.getElementById('gameStatus').textContent = '未开始';
+          break;
+
+        default:
+          console.log('Unknown game update type:', data.type);
+      }
+    }
+
+    // 更新游戏状态
+    function updateGameState(state) {
+      gameState = state;
+
+      document.getElementById('currentRound').textContent = state.currentRound || 0;
+      document.getElementById('playerCount').textContent = state.players?.length || 0;
+
+      if (state.started) {
+        document.getElementById('gameStatus').textContent = '进行中';
+      }
+
+      updateScoreboard(state.scores || {});
+    }
+
+    // 更新计分板
+    function updateScoreboard(scores) {
+      const scoreboard = document.getElementById('scoreboard');
+      scoreboard.innerHTML = '';
+
+      if (Object.keys(scores).length === 0) {
+        scoreboard.innerHTML = '<p style="text-align: center; color: #a0aec0;">暂无玩家</p>';
+        return;
+      }
+
+      for (const [player, score] of Object.entries(scores)) {
+        const div = document.createElement('div');
+        div.className = 'player-score';
+        div.innerHTML = `
+          <span class="player-name">${player}</span>
+          <span class="player-points">${score} 分</span>
+        `;
+        scoreboard.appendChild(div);
+      }
+    }
+
+    // 开始游戏
+    async function startGame() {
+      try {
+        const response = await fetch(`${API_URL}/game/${gameId}/start`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            playerIds: [playerId]
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          addLog('游戏开始请求已发送', 'success');
+        } else {
+          addLog('开始游戏失败: ' + result.error, 'error');
+        }
+      } catch (error) {
+        addLog('开始游戏失败: ' + error.message, 'error');
+      }
+    }
+
+    // 添加分数
+    async function addScore() {
+      try {
+        const response = await fetch(`${API_URL}/game/${gameId}/action`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            playerId,
+            action: 'score',
+            data: { points: 10 }
+          })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          addLog('分数已添加', 'success');
+        } else {
+          addLog('添加分数失败: ' + result.error, 'error');
+        }
+      } catch (error) {
+        addLog('添加分数失败: ' + error.message, 'error');
+      }
+    }
+
+    // 重置游戏
+    async function resetGame() {
+      try {
+        const response = await fetch(`${API_URL}/game/${gameId}/reset`, {
+          method: 'POST'
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          addLog('游戏重置成功', 'success');
+        } else {
+          addLog('重置游戏失败: ' + result.error, 'error');
+        }
+      } catch (error) {
+        addLog('重置游戏失败: ' + error.message, 'error');
+      }
+    }
+
+    // 断开连接
+    function disconnect() {
+      if (ws) {
+        ws.close();
+        ws = null;
+      }
+
+      document.getElementById('setupScreen').style.display = 'block';
+      document.getElementById('gameScreen').style.display = 'none';
+
+      addLog('已断开连接');
+    }
+
+    // 添加日志
+    function addLog(message, type = '') {
+      const log = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry ' + type;
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // 页面关闭时断开连接
+    window.addEventListener('beforeunload', () => {
+      if (ws) {
+        ws.close();
+      }
+    });
+  </script>
+</body>
+
+</html>

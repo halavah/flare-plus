@@ -1,0 +1,39 @@
+name = "flare-plus-turnstile"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# KV for storing Turnstile session data
+[[kv_namespaces]]
+binding = "TURNSTILE_SESSIONS"
+id = "your-turnstile-sessions-kv-id"
+preview_id = "your-turnstile-sessions-preview-id"
+
+# D1 for Turnstile analytics and logging
+[[d1_databases]]
+binding = "TURNSTILE_DB"
+database_name = "flare-plus-turnstile-db"
+database_id = "your-turnstile-database-id"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "development"
+TURNSTILE_SECRET_KEY = "0x4AAAAAAAyour-secret-key"
+TURNSTILE_SITE_KEY = "0x4AAAAAAAsite-key"
+SESSION_DURATION = "300"  # 5 minutes
+MAX_ATTEMPTS = "3"
+RATE_LIMIT_WINDOW = "900"  # 15 minutes
+
+[env.production]
+name = "flare-plus-turnstile-prod"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+TURNSTILE_SECRET_KEY = "0x4AAAAAAAPRODUCTION_SECRET_KEY"
+TURNSTILE_SITE_KEY = "0x4AAAAAAAPRODUCTION_SITE_KEY"
+SESSION_DURATION = "600"  # 10 minutes
+MAX_ATTEMPTS = "5"
+RATE_LIMIT_WINDOW = "1800"  # 30 minutes
+
+# Resource limits
+[limits]
+cpu_ms = 50

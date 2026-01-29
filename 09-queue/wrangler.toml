@@ -1,0 +1,85 @@
+name = "flare-plus-queue"
+main = "src/index.js"
+compatibility_date = "2023-12-01"
+
+# Queue 生产者绑定
+[[queues.producers]]
+binding = "TASK_QUEUE"
+queue = "task-queue"
+
+[[queues.producers]]
+binding = "EMAIL_QUEUE"
+queue = "email-queue"
+
+[[queues.producers]]
+binding = "WEBHOOK_QUEUE"
+queue = "webhook-queue"
+
+[[queues.producers]]
+binding = "IMAGE_QUEUE"
+queue = "image-queue"
+
+# Queue 消费者配置
+[[queues.consumers]]
+queue = "task-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+dead_letter_queue = "task-dlq"
+
+[[queues.consumers]]
+queue = "email-queue"
+max_batch_size = 5
+max_batch_timeout = 60
+max_retries = 5
+dead_letter_queue = "email-dlq"
+
+[[queues.consumers]]
+queue = "webhook-queue"
+max_batch_size = 10
+max_batch_timeout = 30
+max_retries = 3
+dead_letter_queue = "webhook-dlq"
+
+[[queues.consumers]]
+queue = "image-queue"
+max_batch_size = 3
+max_batch_timeout = 120
+max_retries = 2
+dead_letter_queue = "image-dlq"
+
+# D1 数据库 - 存储队列任务和统计
+[[d1_databases]]
+binding = "DB"
+database_name = "queue-db"
+database_id = "your_database_id"
+
+# KV 命名空间 - 存储队列配置和去重
+[[kv_namespaces]]
+binding = "QUEUE_KV"
+id = "your_kv_namespace_id"
+
+# R2 存储 - 存储大型 payload
+[[r2_buckets]]
+binding = "QUEUE_STORAGE"
+bucket_name = "queue-payloads"
+
+# 环境变量
+[vars]
+ENVIRONMENT = "development"
+MAX_PAYLOAD_SIZE = "1048576"
+DEDUPLICATION_WINDOW = "300"
+BATCH_PROCESSING_ENABLED = "true"
+
+# 生产环境
+[env.production]
+name = "flare-plus-queue-prod"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+MAX_PAYLOAD_SIZE = "2097152"
+DEDUPLICATION_WINDOW = "600"
+
+# 资源限制
+[limits]
+cpu_ms = 200

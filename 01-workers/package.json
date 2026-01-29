@@ -1,0 +1,24 @@
+{
+  "name": "flare-plus-workers",
+  "version": "1.0.0",
+  "description": "Cloudflare Workers 测试项目",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "vitest run --config test/config.vitest.js",
+    "test:watch": "vitest --config test/config.vitest.js"
+  },
+  "keywords": ["cloudflare", "workers", "edge-computing"],
+  "author": "Flare Plus",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.25"
+  }
+}

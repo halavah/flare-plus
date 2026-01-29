@@ -1,0 +1,27 @@
+{
+  "name": "flare-plus-r2",
+  "version": "1.0.0",
+  "description": "Cloudflare R2 对象存储测试项目",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "upload": "node scripts/upload.js",
+    "list": "node scripts/list.js",
+    "download": "node scripts/download.js",
+    "test": "vitest"
+  },
+  "keywords": ["cloudflare", "r2", "object-storage", "s3"],
+  "author": "Flare Plus",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
+    "vitest": "^1.0.4"
+  },
+  "dependencies": {
+    "itty-router": "^4.0.25",
+    "aws-sdk": "^2.1509.0"
+  }
+}
